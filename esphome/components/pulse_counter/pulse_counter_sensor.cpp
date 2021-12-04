@@ -158,7 +158,7 @@ void PulseCounterSensor::update() {
   uint32_t now = millis();
   if (this->last_time_ != 0) {
     uint32_t interval = now - this->last_time_;
-    float value = (60000.0f * raw) / float(interval);  // per minute
+    float value = 60000.0f / float(interval) * raw ;  // per minute
     ESP_LOGD(TAG, "'%s': Retrieved counter: %0.2f pulses/min", this->get_name().c_str(), value);
     this->publish_state(value);
   }
